@@ -1,0 +1,35 @@
+sequenceDiagram
+   participant user
+   participant browser
+   participant server
+
+
+   user->>+browser: user enters the URL https://studies.cs.helsinki.fi/exampleapp/spa
+   browser->>+server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/data.json
+   activate server
+   server->>+browser: data.json file
+   deactivate server
+
+   browser->>+server: https://studies.cs.helsinki.fi/exampleapp/main.css
+   activate server
+   server->>+browser: css file
+   deactivate server
+
+   browser->>+server: HTTP GET https://studies.cs.helsinki.fi/exampleapp/spa
+   activate server
+   server->>+browser: HTML document
+   deactivate server
+
+   browser->>+server: GET https://studies.cs.helsinki.fi/exampleapp/spa.js
+   activate server
+   server->>+browser: javascript file
+   deactivate server
+
+   user->>+browser: Save a new note
+   
+   browser->>+server: HTTP POST https://studies.cs.helsinki.fi/exampleapp/new_note_spa
+   server->>+browser: 201 created
+
+   Note right of browser: Note on the right of the browser: The browser receives the status code 201 and displays the new saved note
+
+   
